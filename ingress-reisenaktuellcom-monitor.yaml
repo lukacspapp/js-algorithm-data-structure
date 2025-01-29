@@ -1,0 +1,40 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"cert-manager.io/cluster-issuer":"letsencrypt-prod","kubernetes.io/ingress.class":"nginx","nginx.ingress.kubernetes.io/configuration-snippet":"more_set_headers 'Access-Control-Allow-Origin: $http_origin';\nmore_set_headers 'Access-Control-Allow-Credentials: true';\nmore_set_headers 'Access-Control-Allow-Methods: PUT, GET, PATCH, DELETE, POST, OPTIONS';\nmore_set_headers 'Access-Control-Allow-Headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';\n","nginx.ingress.kubernetes.io/proxy-body-size":"8m"},"creationTimestamp":"2024-08-01T08:33:40Z","generation":2,"name":"reisenaktuellcom-monitor","namespace":"reisenaktuell","resourceVersion":"40325900511","uid":"2104f640-8da2-447e-9ecf-b9dfa6478a00"},"spec":{"rules":[{"host":"mmt8sf.reisenaktuell.com","http":{"paths":[{"backend":{"service":{"name":"service-admin-backend","port":{"number":80}}},"path":"/monitor","pathType":"Prefix"}]}}],"tls":[{"hosts":["mmt8sf.reisenaktuell.com"],"secretName":"mmt8sf-reisenaktuell.com"}]},"status":{"loadBalancer":{"ingress":[{"ip":"85.215.69.218"}]}}}
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers 'Access-Control-Allow-Origin: $http_origin';
+      more_set_headers 'Access-Control-Allow-Credentials: true';
+      more_set_headers 'Access-Control-Allow-Methods: PUT, GET, PATCH, DELETE, POST, OPTIONS';
+      more_set_headers 'Access-Control-Allow-Headers: DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+    nginx.ingress.kubernetes.io/proxy-body-size: 8m
+  creationTimestamp: "2024-08-01T08:33:40Z"
+  generation: 3
+  name: reisenaktuellcom-monitor
+  namespace: reisenaktuell
+  resourceVersion: "40700138959"
+  uid: 2104f640-8da2-447e-9ecf-b9dfa6478a00
+spec:
+  rules:
+  - host: mmt8sf.reisenaktuell.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: service-admin-backendo
+            port:
+              number: 80
+        path: /monitor
+        pathType: Prefix
+  tls:
+  - hosts:
+    - mmt8sf.reisenaktuell.com
+    secretName: mmt8sf-reisenaktuell.com
+status:
+  loadBalancer:
+    ingress:
+    - ip: 85.215.69.218
